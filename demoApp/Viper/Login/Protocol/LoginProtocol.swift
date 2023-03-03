@@ -9,8 +9,9 @@ import UIKit
 
 protocol LoginViewProtocol: AnyObject {
     var presenter: LoginPresenterProtocols?  { get set}
-    func actionLoginButton()
-    func actionRegisterButton()
+    func validUser(isLogin: Bool)
+    func showError ()
+    func stopLoading()
    
 }
 
@@ -19,6 +20,7 @@ protocol LoginPresenterProtocols: AnyObject {
     var view: LoginViewProtocol? { get set }
     var interactor: LoginInteractorInputProtocols? { get set}
     func goToDash(vco: UIViewController)
+    func getLogin(user: String, pass: String)
     
 }
 
@@ -29,10 +31,11 @@ protocol LoginRouterProtocols: AnyObject {
 }
 
 protocol LoginInteractorOutputProtocols: AnyObject {
-    
+    func validUser(isLogin: Bool)
 }
 
 protocol LoginInteractorInputProtocols: AnyObject {
     var presenter: LoginInteractorOutputProtocols? { get set }
+    func getLogin(user: String, pass: String)
 
 }

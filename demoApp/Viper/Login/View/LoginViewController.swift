@@ -21,6 +21,9 @@ class LoginViewController: UIViewController, LoginViewProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    private func config () {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
@@ -31,17 +34,30 @@ class LoginViewController: UIViewController, LoginViewProtocol {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-}
-
-extension LoginViewController: LoginScreenProtocol {
-    func actionLoginButton() {
-        if loginScreen?.getEmail().elementsEqual(String.user) ?? false && loginScreen?.getPassword().elementsEqual(String.pass) ?? false {
+    
+    func validUser(isLogin: Bool) {
+        if isLogin {
             presenter?.goToDash(vco: self)
         }
     }
     
-    func actionRegisterButton() {
+    func showError () {
+        loginScreen?.errorLabel.isHidden = false
     }
+    
+    func stopLoading() {
+        loginScreen?.loadingActivityIndicator.isHidden = true
+        loginScreen?.loadingActivityIndicator.stopAnimating()
+    }
+}
+
+extension LoginViewController: LoginScreenProtocol {
+    func actionLoginButton() {
+        loginScreen?.loadingActivityIndicator.isHidden = false
+        loginScreen?.loadingActivityIndicator.startAnimating()
+        presenter?.getLogin(user: loginScreen?.getEmail() ?? "", pass: loginScreen?.getPassword() ?? "")
+    }
+    
 }
 
 extension LoginViewController: UITextFieldDelegate {

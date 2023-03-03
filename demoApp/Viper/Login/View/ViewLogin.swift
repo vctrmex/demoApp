@@ -11,7 +11,6 @@ import UIKit
 
 protocol LoginScreenProtocol : AnyObject {
     func actionLoginButton()
-    func actionRegisterButton()
 }
 
 class ViewLogin : UIView {
@@ -73,14 +72,30 @@ class ViewLogin : UIView {
         return button
     }()
     
-    lazy var registerButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-        button.addTarget(self, action: #selector(tappedRegisterButton), for: .touchUpInside)
-        return button
+    lazy var errorLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .red
+        label.font = UIFont.systemFont(ofSize: 18)
+        label.text = .errorLogin
+        label.numberOfLines = 0
+        label.isHidden = true
+        label.textAlignment = .center
+        return label
+    }()
+    
+    var loadingActivityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.style = .large
+        indicator.color = .white
+        indicator.startAnimating()
+        indicator.isHidden = true
+        indicator.autoresizingMask = [
+            .flexibleLeftMargin, .flexibleRightMargin,
+            .flexibleTopMargin, .flexibleBottomMargin
+        ]
+        
+        return indicator
     }()
     
     override init(frame: CGRect) {
@@ -92,7 +107,7 @@ class ViewLogin : UIView {
         configEmailTextFieldConstraint()
         configPasswordTextFieldConstraint()
         configLoginButtonConstraint()
-        configRegisterButtonConstraint()
+        configErrorLabelConstraint()
         configButtonEnable(enable: false)
     }
     
@@ -106,10 +121,6 @@ class ViewLogin : UIView {
     
     @objc private func tappedLoginButton() {
         self.delegate?.actionLoginButton()
-    }
-    
-    @objc private func tappedRegisterButton() {
-        self.delegate?.actionRegisterButton()
     }
     
     func validaTextFields() {
@@ -157,7 +168,8 @@ class ViewLogin : UIView {
         self.addSubview(emailTextField)
         self.addSubview(passwordTextField)
         self.addSubview(loginButton)
-        self.addSubview(registerButton)
+        self.addSubview(errorLabel)
+        self.addSubview(loadingActivityIndicator)
     }
     
 
@@ -186,10 +198,10 @@ class ViewLogin : UIView {
             self.loginButton.trailingAnchor.constraint(equalTo: self.emailTextField.trailingAnchor),
             self.loginButton.heightAnchor.constraint(equalTo: self.emailTextField.heightAnchor),
             
-            self.registerButton.topAnchor.constraint(equalTo: self.loginButton.bottomAnchor, constant: 20),
-            self.registerButton.leadingAnchor.constraint(equalTo: self.emailTextField.leadingAnchor),
-            self.registerButton.trailingAnchor.constraint(equalTo: self.emailTextField.trailingAnchor),
-            self.registerButton.heightAnchor.constraint(equalTo: self.emailTextField.heightAnchor)
+            self.errorLabel.topAnchor.constraint(equalTo: self.loginButton.bottomAnchor, constant: 20),
+            self.errorLabel.leadingAnchor.constraint(equalTo: self.emailTextField.leadingAnchor),
+            self.errorLabel.trailingAnchor.constraint(equalTo: self.emailTextField.trailingAnchor),
+            self.errorLabel.heightAnchor.constraint(equalTo: self.emailTextField.heightAnchor)
         ])
     }
     
@@ -236,12 +248,12 @@ class ViewLogin : UIView {
         ])
     }
     
-    private func configRegisterButtonConstraint() {
+    private func configErrorLabelConstraint() {
         NSLayoutConstraint.activate([
-            self.registerButton.topAnchor.constraint(equalTo: self.loginButton.bottomAnchor, constant: 20),
-            self.registerButton.leadingAnchor.constraint(equalTo: self.emailTextField.leadingAnchor, constant: 0),
-            self.registerButton.trailingAnchor.constraint(equalTo: self.emailTextField.trailingAnchor, constant: 0),
-            self.registerButton.heightAnchor.constraint(equalTo: self.emailTextField.heightAnchor)
+            self.errorLabel.topAnchor.constraint(equalTo: self.loginButton.bottomAnchor, constant: 20),
+            self.errorLabel.leadingAnchor.constraint(equalTo: self.emailTextField.leadingAnchor, constant: 0),
+            self.errorLabel.trailingAnchor.constraint(equalTo: self.emailTextField.trailingAnchor, constant: 0),
+            self.errorLabel.heightAnchor.constraint(equalTo: self.emailTextField.heightAnchor)
         ])
     }
 }

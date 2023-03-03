@@ -19,6 +19,7 @@ extension String {
     
     // MARK: Errors
     static let errorCustom = "001"
+    static let errorLogin = "Usuario y/o constraseña incorrecta"
     
     // MARK: App
     static let title = "Demo App"
