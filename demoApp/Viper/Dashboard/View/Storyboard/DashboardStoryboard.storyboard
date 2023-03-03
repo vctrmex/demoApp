@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--TV Show-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="main" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="DashboardView" customModule="demoApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="m06-0J-zd7" customClass="DesignableSegmentControl" customModule="demoApp" customModuleProvider="target">
+                                <rect key="frame" x="5" y="108" width="383" height="32"/>
+                                <color key="backgroundColor" white="0.219940185546875" alpha="1" colorSpace="calibratedWhite"/>
+                                <segments>
+                                    <segment title="Popular"/>
+                                    <segment title="Top Rated"/>
+                                    <segment title="On TV"/>
+                                    <segment title="Airing Today"/>
+                                </segments>
+                                <color key="selectedSegmentTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="textColor">
+                                        <color key="value" red="0.97519935302299987" green="0.97369331791176716" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="otherMovies:" destination="Y6W-OH-hqX" eventType="valueChanged" id="Sy3-b9-lqw"/>
+                                </connections>
+                            </segmentedControl>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="BdM-am-ett">
+                                <rect key="frame" x="20" y="149" width="353" height="659"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="i2W-Qe-5Iy">
+                                    <size key="itemSize" width="150" height="400"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="5" minY="5" maxX="5" maxY="5"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ak2-iO-LMJ">
+                                        <rect key="frame" x="5" y="5" width="160" height="360"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="3OU-AO-7HS">
+                                            <rect key="frame" x="0.0" y="0.0" width="160" height="360"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="160" height="360"/>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="BdM-am-ett" secondAttribute="trailing" constant="20" id="5ij-8M-pMg"/>
+                            <constraint firstItem="m06-0J-zd7" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="5" id="8h9-mh-rHl"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="m06-0J-zd7" secondAttribute="trailing" constant="5" id="CaR-ik-SI5"/>
+                            <constraint firstItem="BdM-am-ett" firstAttribute="top" secondItem="m06-0J-zd7" secondAttribute="bottom" constant="10" id="NJ2-7i-bRA"/>
+                            <constraint firstItem="BdM-am-ett" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="X2g-JR-wH9"/>
+                            <constraint firstItem="BdM-am-ett" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="c79-1i-n8n"/>
+                            <constraint firstItem="m06-0J-zd7" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="5" id="ncb-2s-pSf"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="BdM-am-ett" secondAttribute="bottom" constant="10" id="sZG-KP-oAb"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="TV Show" id="RFb-1R-jlX">
+                        <barButtonItem key="rightBarButtonItem" image="list.dash" catalog="system" id="Pef-RT-APr">
+                            <connections>
+                                <action selector="gotoProfile:" destination="Y6W-OH-hqX" id="Pwe-n7-n2w"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="collectionMovies" destination="BdM-am-ett" id="XK1-Pg-xwf"/>
+                        <outlet property="segmentMovies" destination="m06-0J-zd7" id="pcw-OS-DP3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1066.4122137404579" y="3.5211267605633805"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="4ZP-zf-eMM">
+            <objects>
+                <navigationController storyboardIdentifier="navigation" automaticallyAdjustsScrollViewInsets="NO" id="7jG-2f-swk" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="p4A-qt-ppA">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="ir9-Xv-u8o"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X1i-BX-BkQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139.69465648854961" y="3.5211267605633805"/>
+        </scene>
+    </scenes>
+    <designables>
+        <designable name="m06-0J-zd7">
+            <size key="intrinsicContentSize" width="423" height="31"/>
+        </designable>
+    </designables>
+    <resources>
+        <image name="list.dash" catalog="system" width="128" height="85"/>
+    </resources>
+</document>
